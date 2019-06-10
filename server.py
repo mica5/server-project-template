@@ -114,9 +114,10 @@ class TestResource(HTTPSResource):
         super(TestResource, self).__init__(*args, **kwargs)
 
     def on_post(self, req, resp):
-        super(TestResource, self).on_get(req, resp)
+        data = self.parse_post_data(req)
+
         resp.content_type = falcon.MEDIA_TEXT
-        resp.body = 'test response'
+        resp.body = str(data)
         return
 
 
